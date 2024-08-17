@@ -115,11 +115,14 @@ if [ "${ci}" != 1 ]; then
     if [ -z "${zipn}" ]; then
         echo -ne "\e[1mEnter zipname: \e[0m"
         read -r zipn
-	if [[ "${MODULE}" = "1" ]]; then
-        echo -ne "\e[1mEnter modulename: \e[0m"
-	read -r modn
+   fi
+
+   if [ "${MODULE}" = "1" ]; then
+       if [ -z "${modn}" ]; then
+           echo -ne "\e[1mEnter modulename: \e[0m"
+	   read -r modn
+       fi
     fi
-fi
 else
     export KBUILD_BUILD_VERSION=$DRONE_BUILD_NUMBER
     export KBUILD_BUILD_HOST=$DRONE_SYSTEM_HOST
